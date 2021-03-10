@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
 public class Topic_02_Xpath_CSS {
 	WebDriver driver;
 
-	//@BeforeClass
+	@BeforeClass
 	public void beforeClass() {
 		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(500, TimeUnit.SECONDS);
@@ -23,7 +23,7 @@ public class Topic_02_Xpath_CSS {
 		driver.get("http://live.demoguru99.com/");
 	}
 
-	//@Test
+	@Test
 	public void TC_01_Login_with_Empty_Email_and_Pass() throws InterruptedException {
 		// Login with empty Email and Password
 		driver.findElement(By.xpath(".//div[@class='footer']//a[@title='My Account']")).click();
@@ -36,7 +36,7 @@ public class Topic_02_Xpath_CSS {
 		Thread.sleep(5000);
 	}
 
-	//@Test
+	@Test
 	public void TC_02_Login_with_Invalid_Email() throws InterruptedException {
 		// Stay in Login Page
 		// Login with invalid Email
@@ -47,7 +47,7 @@ public class Topic_02_Xpath_CSS {
 		Thread.sleep(5000);
 	}
 	
-	//@Test
+	@Test
 	public void TC_03_Login_with_Pass_less_than_min_number_characters() throws InterruptedException {
 		// Stay in Login Page
 		// Login with password less than minimum number characters
@@ -60,7 +60,7 @@ public class Topic_02_Xpath_CSS {
 		Thread.sleep(5000);
 	}
 	
-	//@Test
+	@Test
 	public void TC_04_Login_with_incorrect_email_or_pass() throws InterruptedException {
 		// Stay in Login Page
 		// Login with incorrect email or pass
@@ -73,7 +73,7 @@ public class Topic_02_Xpath_CSS {
 		Thread.sleep(5000);
 	}
 	
-	//@Test
+	@Test
 	public void TC_05_Create_a_new_account() throws InterruptedException {
 		// Stay in Login Page
 		// Create a new account
@@ -96,7 +96,8 @@ public class Topic_02_Xpath_CSS {
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("//button[@title='Register']")).click();
 		Assert.assertEquals(driver.findElement(By.xpath("//li[@class='success-msg']//span[text()]")).getText(),"Thank you for registering with Main Website Store.");
-		Assert.assertEquals(driver.findElement(By.xpath("string(//div[@class='box-content']/p[1])")).getText()," Anh Thu Nguyen anhthunguyen.tester01@gmail.com Change Password");
+		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='box-content']/p")).getText().contains("Anh Thu Nguyen"));
+		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='box-content']/p")).getText().contains("anhthunguyen.tester01@gmail.com"));
 		Thread.sleep(5000);
 		driver.findElement(By.xpath("//header[@id='header']//span[text()='Account']")).click();
 		driver.findElement(By.xpath("//div[@id='header-account']//li[last()]/child::a")).click();
@@ -121,19 +122,11 @@ public class Topic_02_Xpath_CSS {
 		driver.get("http://live.demoguru99.com/index.php/customer/account/index/");
 		Assert.assertEquals(driver.findElement(By.xpath("//div[@class='dashboard']/descendant::h1")).getText(),"MY DASHBOARD");
 		Assert.assertEquals(driver.findElement(By.xpath("//div[@class='welcome-msg']/p/strong[text()]")).getText(),"Hello, Anh Thu Nguyen!");
-		Assert.assertEquals(driver.findElement(By.xpath("string(//div[@class='box-content']/p[1])")).getText()," Anh Thu Nguyen anhthunguyen.tester01@gmail.com Change Password");
+		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='box-content']/p")).getText().contains("Anh Thu Nguyen"));
+		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='box-content']/p")).getText().contains("anhthunguyen.tester01@gmail.com"));
 		Thread.sleep(5000);
-		
-			
+				
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	@AfterClass
 	public void afterClass() {
