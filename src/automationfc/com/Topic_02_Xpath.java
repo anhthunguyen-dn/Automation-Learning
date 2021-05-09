@@ -2,6 +2,7 @@ package automationfc.com;
 
 import static org.testng.Assert.assertEquals;
 
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -12,9 +13,12 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+
+
 public class Topic_02_Xpath {
 	WebDriver driver;
-    String random_email = random(ABC....);
+    Random rand = new Random();
+    String random_email = ("automation" + rand.nextInt(123456789) + "@gmail.com");
     
 	@BeforeClass
 	public void beforeClass() {
@@ -53,7 +57,7 @@ public class Topic_02_Xpath {
 		// Stay in Login Page
 		// Login with password less than minimum number characters
 		driver.findElement(By.xpath("//input[@id='email']")).clear();
-		driver.findElement(By.xpath("//input[@id='email']")).sendKeys(random_email + "@gmail.com");
+		driver.findElement(By.xpath("//input[@id='email']")).sendKeys(random_email);
 		driver.findElement(By.xpath("//input[@id='pass']")).clear();
 		driver.findElement(By.xpath("//input[@id='pass']")).sendKeys("123");
 		driver.findElement(By.xpath("//button[@title='Login']")).click();
@@ -66,7 +70,7 @@ public class Topic_02_Xpath {
 		// Stay in Login Page
 		// Login with incorrect email or pass
 		driver.findElement(By.xpath("//input[@id='email']")).clear();
-		driver.findElement(By.xpath("//input[@id='email']")).sendKeys(random_email + "@gmail.com");
+		driver.findElement(By.xpath("//input[@id='email']")).sendKeys(random_email);
 		driver.findElement(By.xpath("//input[@id='pass']")).clear();
 		driver.findElement(By.xpath("//input[@id='pass']")).sendKeys("123456789");
 		driver.findElement(By.xpath("//button[@title='Login']")).click();
@@ -89,7 +93,7 @@ public class Topic_02_Xpath {
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("//input[@id='lastname']")).sendKeys("Nguyen");
 		Thread.sleep(1000);
-		driver.findElement(By.xpath("//input[@id='email_address']")).sendKeys(random_email + "@gmail.com");
+		driver.findElement(By.xpath("//input[@id='email_address']")).sendKeys(random_email);
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("//input[@id='password']")).sendKeys("123456789aA@");
 		Thread.sleep(1000);
@@ -98,7 +102,7 @@ public class Topic_02_Xpath {
 		driver.findElement(By.xpath("//button[@title='Register']")).click();
 		Assert.assertEquals(driver.findElement(By.xpath("//li[@class='success-msg']//span[text()]")).getText(),"Thank you for registering with Main Website Store.");
 		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='box-content']/p")).getText().contains("Anh Thu Nguyen"));
-		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='box-content']/p")).getText().contains(random_email + "@gmail.com"));
+		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='box-content']/p")).getText().contains(random_email));
 		Thread.sleep(5000);
 		driver.findElement(By.xpath("//header[@id='header']//span[text()='Account']")).click();
 		driver.findElement(By.xpath("//div[@id='header-account']//li[last()]/child::a")).click();
@@ -117,14 +121,14 @@ public class Topic_02_Xpath {
 		driver.get("http://live.demoguru99.com/");
 		driver.findElement(By.xpath(".//div[@class='footer']//a[@title='My Account']")).click();
 		driver.get("http://live.demoguru99.com/index.php/customer/account/login/");		
-		driver.findElement(By.xpath("//input[@id='email']")).sendKeys(random_email + "@gmail.com");
+		driver.findElement(By.xpath("//input[@id='email']")).sendKeys(random_email);
 		driver.findElement(By.xpath("//input[@id='pass']")).sendKeys("123456789aA@");
 		driver.findElement(By.xpath("//button[@title='Login']")).click();
 		driver.get("http://live.demoguru99.com/index.php/customer/account/index/");
 		Assert.assertEquals(driver.findElement(By.xpath("//div[@class='dashboard']/descendant::h1")).getText(),"MY DASHBOARD");
 		Assert.assertEquals(driver.findElement(By.xpath("//div[@class='welcome-msg']/p/strong[text()]")).getText(),"Hello, Anh Thu Nguyen!");
 		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='box-content']/p")).getText().contains("Anh Thu Nguyen"));
-		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='box-content']/p")).getText().contains(random_email + "@gmail.com"));
+		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='box-content']/p")).getText().contains(random_email));
 		Thread.sleep(5000);
 				
 	}

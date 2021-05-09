@@ -27,7 +27,7 @@ public class Topic_03_Selenium_API_Element1 {
 	}
 
 	
-	@Test
+	//@Test
 	public void TC_01_IsDisplayed() throws InterruptedException {
 		driver.get("https://automationfc.github.io/basic-form/index.html");
 		boolean emailTextboxStatus = driver.findElement(By.xpath("//input[@type='email']")).isDisplayed();
@@ -52,7 +52,7 @@ public class Topic_03_Selenium_API_Element1 {
 	}
 
 	
-	@Test
+	//@Test
 	public void TC_02_IsEnable() throws InterruptedException {
 		boolean under18Status = driver.findElement(By.xpath("//label[@for='under_18']")).isDisplayed();
 		if (under18Status == true) {
@@ -63,7 +63,7 @@ public class Topic_03_Selenium_API_Element1 {
 		}
 	}
 	
-	@Test
+	//@Test
 	public void TC_03_IsSelected() throws InterruptedException {
 		driver.findElement(By.id("under_18")).click();
 		driver.findElement(By.id("java")).click();
